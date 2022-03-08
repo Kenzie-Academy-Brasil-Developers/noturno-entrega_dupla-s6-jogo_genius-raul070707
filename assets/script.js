@@ -1,5 +1,6 @@
 let randomOrder = [];
 let playerOrder = [];
+let lastPlayerOrder = [];
 let score = 0;
 
 // Mapeando botões //
@@ -9,7 +10,10 @@ const greenBtn = document.querySelector(".button-green");
 const redBtn = document.querySelector(".button-red");
 const yellowBtn = document.querySelector(".button-yellow");
 const blueBtn = document.querySelector(".button-blue");
+const displayAdd = document.querySelector(".display");
 const scoreDisplay = document.querySelector(".scoreDisplay");
+const addDiv = document.createElement("div");
+displayAdd.appendChild(addDiv);
 
 startBtn.onclick = () => startClick();
 greenBtn.onclick = () => click(0);
@@ -21,6 +25,7 @@ blueBtn.onclick = () => click(3);
 
 const updScore = () => {
   scoreDisplay.innerHTML = score;
+  addDiv.innerHTML = `Ordem do player:${lastPlayerOrder}, Ordem aleatória: ${randomOrder}`;
 };
 updScore();
 
@@ -30,7 +35,9 @@ const startClick = () => {
   randomOrder = [];
   playerOrder = [];
   score = 0;
+  startBtn.innerHTML = "Jogando";
   randomColor();
+  updScore();
 };
 
 // Função de click //
@@ -44,6 +51,8 @@ const click = (color) => {
 // Função para gerar cor aleatória //
 
 const randomColor = () => {
+  lastPlayerOrder = playerOrder;
+  playerOrder = [];
   randomOrder[randomOrder.length] = Math.floor(Math.random() * 4);
   console.log(`Random order é ${randomOrder}`);
 };
@@ -51,22 +60,22 @@ const randomColor = () => {
 // Função para checar o resultado //
 
 const checkSequence = () => {
-  for (let counter in playerOrder) {
-    if (playerOrder[counter] != randomOrder[counter]) {
-      gameOver();
-      break;
-    }
-    if (playerOrder.length == randomOrder.length) {
-      lvlUp();
-      break;
-    }
+  const hasWrongNumber = playerOrder.filter((current, index) => {
+    return current !== randomOrder[index];
+  }).length;
+
+  if (hasWrongNumber) {
+    gameOver();
+  }
+
+  if (playerOrder.length === randomOrder.length && !hasWrongNumber) {
+    lvlUp();
   }
 };
 
 // Função sequência correta //
 
 const lvlUp = () => {
-  playerOrder = [];
   randomColor();
   score++;
   updScore();
@@ -75,7 +84,6 @@ const lvlUp = () => {
 // Função sequência incorreta //
 
 const gameOver = () => {
-  randomOrder = [];
-  playerOrder = [];
-  console.log("Você perdeu");
+  scoreDisplay.innerHTML = `Você perdeu! Sua pontuação foi ${score}`;
+  startBtn.innerHTML = "Reiniciar";
 };
