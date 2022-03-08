@@ -16,8 +16,15 @@ h1 {
     width: 80vw;
     height: 80vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.scoreDisplay {
+    background-color: white;
+    padding: 10px;
+    font-size: 18px;
 }
 
 .start {
