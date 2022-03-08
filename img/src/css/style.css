@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 800px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.display {
+    background-color: aqua;
+    width: 80vw;
+    height: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.buttons {
+    background-color: black;
+    width: 80vw;
+    height: 80vw;
+    padding: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button-green {
+    background-color: green;
+    width: 45%;
+    height: 45%;
+}
+
+.button-red {
+    background-color: red;
+    width: 45%;
+    height: 45%;
+}
+
+.button-blue {
+    background-color: blue;
+    width: 45%;
+    height: 45%;
+}
+
+.button-yellow {
+    background-color: yellow;
+    width: 45%;
+    height: 45%;
+}
