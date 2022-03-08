@@ -17,12 +17,11 @@ redBtn.onclick = () => click(1);
 yellowBtn.onclick = () => click(2);
 blueBtn.onclick = () => click(3);
 
-
 // Função atualizar score //
 
 const updScore = () => {
-    scoreDisplay.innerHTML = score;
-}
+  scoreDisplay.innerHTML = score;
+};
 updScore();
 
 // Função iniciar jogo //
@@ -59,6 +58,7 @@ const checkSequence = () => {
     }
     if (playerOrder.length == randomOrder.length) {
       lvlUp();
+      break;
     }
   }
 };
@@ -66,6 +66,7 @@ const checkSequence = () => {
 // Função sequência correta //
 
 const lvlUp = () => {
+  playerOrder = [];
   randomColor();
   score++;
   updScore();
