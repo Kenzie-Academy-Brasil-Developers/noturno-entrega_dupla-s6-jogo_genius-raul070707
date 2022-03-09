@@ -38,7 +38,8 @@ const startClick = () => {
   startBtn.innerHTML = "Jogando";
   randomColor();
   updScore();
-  activeButton();
+  initialSequence();
+  startBtn.disabled = true;
 };
 
 // Função de click //
@@ -47,7 +48,7 @@ const click = (color) => {
   playerOrder[playerOrder.length] = color;
   console.log(`Player order é ${playerOrder}`);
   checkSequence();
-  activeButton();
+  activeButton(color);
 };
 
 // Função para gerar cor aleatória //
@@ -81,6 +82,7 @@ const lvlUp = () => {
   randomColor();
   score++;
   updScore();
+  setTimeout(() => initialSequence(), 3000)
 };
 
 // Função sequência incorreta //
@@ -88,36 +90,70 @@ const lvlUp = () => {
 const gameOver = () => {
   scoreDisplay.innerHTML = `Você perdeu! Sua pontuação foi ${score}`;
   startBtn.innerHTML = "Reiniciar";
+
+  startBtn.disabled = false;
 };
 
-// Função para fazer brilhar os botoes //
+// Função para fazer brilhar os botoes na sequência //
 
-const activeButton = () => {
-  randomOrder.forEach((index) => {
+const initialSequence = () => {
+  randomOrder.forEach((valor, index) => {
+    
+    setTimeout(() =>{
 
-      if(index === 0){
+      if(valor === 0){
 
         greenBtn.className = 'shine-green'
   
-        setTimeout(() => greenBtn.className ='button-green', 2000);
+        setTimeout(() => greenBtn.className ='button-green', 1000);
 
-      } else if(index === 1){
+      } else if(valor === 1){
 
         redBtn.className = 'shine-red'
   
-        setTimeout(() => redBtn.className ='button-red', 2000);
+        setTimeout(() => redBtn.className ='button-red', 1000);
 
-      } else if(index === 2){
+      } else if(valor === 2){
 
         yellowBtn.className = 'shine-yellow'
   
-        setTimeout(() => yellowBtn.className ='button-yellow', 2000);
+        setTimeout(() => yellowBtn.className ='button-yellow', 1000);
 
       } else {
 
         blueBtn.className = 'shine-blue'
   
-        setTimeout(() => blueBtn.className ='button-blue', 2000);
+        setTimeout(() => blueBtn.className ='button-blue', 1000);
       }
+    }, index * 1500)
   })
+}
+
+// Função para fazer brilhar os botoes //
+
+const activeButton = (index) => {
+  if(index === 0){
+
+    greenBtn.className = 'shine-green'
+
+    setTimeout(() => greenBtn.className ='button-green', 1000);
+
+  } else if(index === 1){
+
+    redBtn.className = 'shine-red'
+
+    setTimeout(() => redBtn.className ='button-red', 1000);
+
+  } else if(index === 2){
+
+    yellowBtn.className = 'shine-yellow'
+
+    setTimeout(() => yellowBtn.className ='button-yellow', 1000);
+
+  } else {
+
+    blueBtn.className = 'shine-blue'
+
+    setTimeout(() => blueBtn.className ='button-blue', 1000);
+  }
 }
