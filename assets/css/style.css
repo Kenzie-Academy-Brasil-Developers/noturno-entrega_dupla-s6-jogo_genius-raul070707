@@ -47,25 +47,49 @@ h1 {
 }
 
 .button-green {
-    background-color: green;
+    background-color: rgb(37, 112, 37);
     width: 45%;
     height: 45%;
 }
 
 .button-red {
-    background-color: red;
+    background-color: rgb(150, 59, 59);
     width: 45%;
     height: 45%;
 }
 
 .button-blue {
-    background-color: blue;
+    background-color: rgb(49, 49, 131);
     width: 45%;
     height: 45%;
 }
 
 .button-yellow {
-    background-color: yellow;
+    background-color: rgb(161, 161, 48);
+    width: 45%;
+    height: 45%;
+}
+
+.shine-green {
+    background-color: #3AFA20;
+    width: 45%;
+    height: 45%;
+}
+
+.shine-red {
+    background-color: #FA1B00;
+    width: 45%;
+    height: 45%;
+}
+
+.shine-yellow {
+    background-color: #FFF821;
+    width: 45%;
+    height: 45%;
+}
+
+.shine-blue {
+    background-color: #0400ff;
     width: 45%;
     height: 45%;
 }

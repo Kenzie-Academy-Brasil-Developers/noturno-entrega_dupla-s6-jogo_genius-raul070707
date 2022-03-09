@@ -6,10 +6,10 @@ let score = 0;
 // Mapeando botões //
 
 const startBtn = document.querySelector(".start");
-const greenBtn = document.querySelector(".button-green");
-const redBtn = document.querySelector(".button-red");
-const yellowBtn = document.querySelector(".button-yellow");
-const blueBtn = document.querySelector(".button-blue");
+const greenBtn = document.getElementById("buttonGreen");
+const redBtn = document.getElementById("buttonRed");
+const yellowBtn = document.getElementById("buttonYellow");
+const blueBtn = document.getElementById("buttonBlue");
 const displayAdd = document.querySelector(".display");
 const scoreDisplay = document.querySelector(".scoreDisplay");
 const addDiv = document.createElement("div");
@@ -38,6 +38,7 @@ const startClick = () => {
   startBtn.innerHTML = "Jogando";
   randomColor();
   updScore();
+  activeButton();
 };
 
 // Função de click //
@@ -46,6 +47,7 @@ const click = (color) => {
   playerOrder[playerOrder.length] = color;
   console.log(`Player order é ${playerOrder}`);
   checkSequence();
+  activeButton();
 };
 
 // Função para gerar cor aleatória //
@@ -87,3 +89,35 @@ const gameOver = () => {
   scoreDisplay.innerHTML = `Você perdeu! Sua pontuação foi ${score}`;
   startBtn.innerHTML = "Reiniciar";
 };
+
+// Função para fazer brilhar os botoes //
+
+const activeButton = () => {
+  randomOrder.forEach((index) => {
+
+      if(index === 0){
+
+        greenBtn.className = 'shine-green'
+  
+        setTimeout(() => greenBtn.className ='button-green', 2000);
+
+      } else if(index === 1){
+
+        redBtn.className = 'shine-red'
+  
+        setTimeout(() => redBtn.className ='button-red', 2000);
+
+      } else if(index === 2){
+
+        yellowBtn.className = 'shine-yellow'
+  
+        setTimeout(() => yellowBtn.className ='button-yellow', 2000);
+
+      } else {
+
+        blueBtn.className = 'shine-blue'
+  
+        setTimeout(() => blueBtn.className ='button-blue', 2000);
+      }
+  })
+}
