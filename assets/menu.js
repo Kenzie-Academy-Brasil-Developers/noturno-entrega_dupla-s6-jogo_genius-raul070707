@@ -6,9 +6,11 @@ menu.addEventListener('click', () => {
         menu.classList.add('open');
         scoreList.classList.add('listScore');
         menuOpen = true;
+        addHistoryToMenu();
     } else {
         menu.classList.remove('open');
         scoreList.classList.remove('listScore');
         menuOpen = false;
+        scoreHistory = [];
     }
 })

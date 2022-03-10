@@ -1,7 +1,8 @@
 let randomOrder = [];
 let playerOrder = [];
 let lastPlayerOrder = [];
-let score = 1;
+let score = 0;
+let scoreHistory = [];
 
 // Mapeando botões //
 
@@ -12,8 +13,15 @@ const yellowBtn = document.getElementById("buttonYellow");
 const blueBtn = document.getElementById("buttonBlue");
 const displayAdd = document.querySelector(".display");
 const scoreDisplay = document.querySelector(".scoreDisplay");
-const check = document.querySelector('.check');
+const check = document.querySelector(".check");
+const historyList = document.getElementById("scoreList");
 const addDiv = document.createElement("div");
+const addUl = document.createElement("ul");
+historyList.appendChild(addUl);
+
+addUl.id = "scoreUl";
+const ulHistory = document.getElementById("scoreUl");
+
 displayAdd.appendChild(addDiv);
 
 startBtn.onclick = () => startClick();
@@ -25,7 +33,7 @@ blueBtn.onclick = () => click(3);
 // Função atualizar score //
 
 const updScore = () => {
-  check.innerHTML = `Lvl: ${score}`;
+  check.innerHTML = `Lvl: ${score + 1}`;
   addDiv.innerHTML = `Ordem do player:${lastPlayerOrder}, Ordem aleatória: ${randomOrder}`;
 };
 updScore();
@@ -35,11 +43,15 @@ updScore();
 const startClick = () => {
   randomOrder = [];
   playerOrder = [];
-  score = 1;
+  score = 0;
   startBtn.innerHTML = "Jogando";
   randomColor();
   updScore();
   initialSequence();
+  greenBtn.disabled = false;
+  redBtn.disabled = false;
+  yellowBtn.disabled = false;
+  blueBtn.disabled = false;
   startBtn.disabled = true;
 };
 
@@ -64,7 +76,6 @@ const randomColor = () => {
 // Função para checar o resultado //
 
 const checkSequence = () => {
-
   const hasWrongNumber = playerOrder.filter((current, index) => {
     return current !== randomOrder[index];
   }).length;
@@ -84,7 +95,7 @@ const lvlUp = () => {
   randomColor();
   score++;
   updScore();
-  setTimeout(() => initialSequence(), 3000)
+  setTimeout(() => initialSequence(), 3000);
 };
 
 // Função sequência incorreta //
@@ -92,7 +103,11 @@ const lvlUp = () => {
 const gameOver = () => {
   scoreDisplay.innerHTML = `Você perdeu! Sua pontuação foi ${score}`;
   startBtn.innerHTML = "Reiniciar";
-
+  scoreHistory.push(score);
+  greenBtn.disabled = true;
+  redBtn.disabled = true;
+  yellowBtn.disabled = true;
+  blueBtn.disabled = true;
   startBtn.disabled = false;
 };
 
@@ -100,62 +115,57 @@ const gameOver = () => {
 
 const initialSequence = () => {
   randomOrder.forEach((valor, index) => {
-    
-    setTimeout(() =>{
+    setTimeout(() => {
+      if (valor === 0) {
+        displayAdd.className = "display-green";
 
-      if(valor === 0){
+        setTimeout(() => (displayAdd.className = "display"), 1000);
+      } else if (valor === 1) {
+        displayAdd.className = "display-red";
 
-        displayAdd.className = 'display-green'
-  
-        setTimeout(() => displayAdd.className ='display', 1000);
+        setTimeout(() => (displayAdd.className = "display"), 1000);
+      } else if (valor === 2) {
+        displayAdd.className = "display-yellow";
 
-      } else if(valor === 1){
-
-        displayAdd.className = 'display-red'
-  
-        setTimeout(() => displayAdd.className ='display', 1000);
-
-      } else if(valor === 2){
-
-        displayAdd.className = 'display-yellow'
-  
-        setTimeout(() => displayAdd.className ='display', 1000);
-
+        setTimeout(() => (displayAdd.className = "display"), 1000);
       } else {
+        displayAdd.className = "display-blue";
 
-        displayAdd.className = 'display-blue'
-  
-        setTimeout(() => displayAdd.className ='display', 1000);
+        setTimeout(() => (displayAdd.className = "display"), 1000);
       }
-    }, index * 1500)
-  })
-}
+    }, index * 1500);
+  });
+};
 
 // Função para fazer brilhar os botoes //
 
 const activeButton = (index) => {
-  if(index === 0){
+  if (index === 0) {
+    greenBtn.className = "shine-green";
 
-    greenBtn.className = 'shine-green'
+    setTimeout(() => (greenBtn.className = "button-green"), 1000);
+  } else if (index === 1) {
+    redBtn.className = "shine-red";
 
-    setTimeout(() => greenBtn.className ='button-green', 1000);
+    setTimeout(() => (redBtn.className = "button-red"), 1000);
+  } else if (index === 2) {
+    yellowBtn.className = "shine-yellow";
 
-  } else if(index === 1){
-
-    redBtn.className = 'shine-red'
-
-    setTimeout(() => redBtn.className ='button-red', 1000);
-
-  } else if(index === 2){
-
-    yellowBtn.className = 'shine-yellow'
-
-    setTimeout(() => yellowBtn.className ='button-yellow', 1000);
-
+    setTimeout(() => (yellowBtn.className = "button-yellow"), 1000);
   } else {
+    blueBtn.className = "shine-blue";
 
-    blueBtn.className = 'shine-blue'
-
-    setTimeout(() => blueBtn.className ='button-blue', 1000);
+    setTimeout(() => (blueBtn.className = "button-blue"), 1000);
   }
+};
+
+// Adicionar histórico ao menu //
+
+function addHistoryToMenu() {
+  const sortedHistory = scoreHistory.sort((a, b) => a - b)
+  sortedHistory.forEach((scoreValue) => {
+    const addLi = document.createElement("li");
+    addLi.textContent =  `Pontuação ${scoreValue}`;
+    ulHistory.appendChild(addLi);
+  });
 }
