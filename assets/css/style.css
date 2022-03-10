@@ -1,20 +1,160 @@
-.container {
+body {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 8vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
-    height: 800px;
-    text-align: center;
+    background-color: #1C1C1C;
+    border: 3px solid #fff;
 }
 
 h1 {
     text-align: center;
 }
 
-.display {
-    background-color: aqua;
-    width: 80vw;
-    height: 80vw;
+/* estilização da verificação de resultado */
+
+.check {
+    width: 80px;
+    border-left: 3px solid #fff;
+    height: 8vh;
+}
+
+/* estilização do menu hamburguer */
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 8vh;
+    border-right: 3px solid #fff;
+    cursor: pointer;
+    transition: all .5 ease-in-out;
+}
+
+.line {
+    width: 50px;
+    height: 6px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255,101,47,.2);
+    transition: all .5s ease-in-out;
+}
+
+.line::before,
+.line::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 6px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255,101,47,.2);
+    transition: all .5s ease-in-out;
+}
+
+.line::before {
+    transform: translateY(-16px);
+}
+
+.line::after {
+    transform: translateY(16px);
+}
+
+.menu.open .line {
+    transform: translate(-50px);
+    background: transparent;
+    box-shadow: none;
+}
+
+.menu.open .line::before {
+    transform: rotate(45deg) translate(35px, -35px);
+}
+
+.menu.open .line::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+
+.listScore {
+    width: 70%;
+    height: 92vh;
+    position: absolute;
+    top: 8vh;
+    left: 0;
+    background-color: #fff;
+    color: #1C1C1C;
+    transition: all .5s ease-in-out;
+    border-radius: 0 40px 40px 0;
+}
+
+.check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+/* Estilização da secão de mensagens e botoes */
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 92vh;
+    text-align: center;
+    background-color: #292929;
+}
+
+.display {  
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-green {  
+    background-color: #3AFA20;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-red {  
+    background-color: #FA1B00;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-yellow { 
+    background-color: #FFF821; 
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-blue {  
+    background-color: #0400ff;
+    width: 100%;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +162,6 @@ h1 {
 }
 
 .scoreDisplay {
-    background-color: white;
     padding: 10px;
     font-size: 18px;
 }
@@ -36,60 +175,156 @@ h1 {
 }
 
 .buttons {
-    background-color: black;
-    width: 80vw;
-    height: 80vw;
-    padding: 5%;
+    background-color: #1C1C1C;
+    width: 100%;
+    height: 32vh;
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    overflow: hidden;
+    border-top: 3px solid #fff;
 }
 
 .button-green {
     background-color: rgb(37, 112, 37);
-    width: 45%;
+    width: 40%;
+    min-width: 120px;
     height: 45%;
+    margin: 2%;
 }
 
 .button-red {
     background-color: rgb(150, 59, 59);
-    width: 45%;
+    width: 40%;
+    min-width: 120px;
     height: 45%;
+    margin: 2%;
 }
 
 .button-blue {
     background-color: rgb(49, 49, 131);
-    width: 45%;
+    width: 40%;
+    min-width: 120px;
     height: 45%;
+    margin: 2%;
 }
 
 .button-yellow {
     background-color: rgb(161, 161, 48);
-    width: 45%;
+    width: 40%;
+    min-width: 120px;
     height: 45%;
+    margin: 2%;
 }
 
 .shine-green {
     background-color: #3AFA20;
-    width: 45%;
+    width: 40%;
+    min-width: 120px;
     height: 45%;
+    margin: 2%;
 }
 
 .shine-red {
     background-color: #FA1B00;
-    width: 45%;
+    width: 40%;
+    min-width: 120px;
     height: 45%;
+    margin: 2%;
 }
 
 .shine-yellow {
     background-color: #FFF821;
-    width: 45%;
+    width: 40%;
+    min-width: 120px;
     height: 45%;
+    margin: 2%;
 }
 
 .shine-blue {
     background-color: #0400ff;
-    width: 45%;
+    width: 40%;
+    min-width: 120px;
     height: 45%;
+    margin: 2%;
+}
+
+@media (min-width: 580px){
+    .buttons {
+        flex-wrap: nowrap;
+    }
+
+    .button-green {
+        background-color: rgb(37, 112, 37);
+        width: 40%;
+        min-width: 60px;
+        height: 80%;
+        margin: 10px 15px;
+        cursor: pointer;
+    }
+    
+    .button-red {
+        background-color: rgb(150, 59, 59);
+        width: 40%;
+        min-width: 60px;
+        height: 80%;
+        margin: 10px 15px;
+        cursor: pointer;
+    }
+    
+    .button-blue {
+        background-color: rgb(49, 49, 131);
+        width: 40%;
+        min-width: 60px;
+        height: 80%;
+        margin: 10px 15px;
+        cursor: pointer;
+    }
+    
+    .button-yellow {
+        background-color: rgb(161, 161, 48);
+        width: 40%;
+        min-width: 60px;
+        height: 80%;
+        margin: 10px 15px;
+        cursor: pointer;
+    }
+    
+    .shine-green {
+        background-color: #3AFA20;
+        width: 40%;
+        min-width: 60px;
+        height: 80%;
+        margin: 10px 15px;
+        cursor: pointer;
+    }
+    
+    .shine-red {
+        background-color: #FA1B00;
+        width: 40%;
+        min-width: 60px;
+        height: 80%;
+        margin: 10px 15px;
+        cursor: pointer;
+    }
+    
+    .shine-yellow {
+        background-color: #FFF821;
+        width: 40%;
+        min-width: 60px;
+        height: 80%;
+        margin: 10px 15px;
+        cursor: pointer;
+    }
+    
+    .shine-blue {
+        background-color: #0400ff;
+        width: 40%;
+        min-width: 60px;
+        height: 80%;
+        margin: 10px 15px;
+        cursor: pointer; 
+    }
 }
