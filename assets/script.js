@@ -1,7 +1,7 @@
 let randomOrder = [];
 let playerOrder = [];
 let lastPlayerOrder = [];
-let score = 0;
+let score = 1;
 
 // Mapeando botões //
 
@@ -12,6 +12,7 @@ const yellowBtn = document.getElementById("buttonYellow");
 const blueBtn = document.getElementById("buttonBlue");
 const displayAdd = document.querySelector(".display");
 const scoreDisplay = document.querySelector(".scoreDisplay");
+const check = document.querySelector('.check');
 const addDiv = document.createElement("div");
 displayAdd.appendChild(addDiv);
 
@@ -24,7 +25,7 @@ blueBtn.onclick = () => click(3);
 // Função atualizar score //
 
 const updScore = () => {
-  scoreDisplay.innerHTML = score;
+  check.innerHTML = `Lvl: ${score}`;
   addDiv.innerHTML = `Ordem do player:${lastPlayerOrder}, Ordem aleatória: ${randomOrder}`;
 };
 updScore();
@@ -34,7 +35,7 @@ updScore();
 const startClick = () => {
   randomOrder = [];
   playerOrder = [];
-  score = 0;
+  score = 1;
   startBtn.innerHTML = "Jogando";
   randomColor();
   updScore();
@@ -63,6 +64,7 @@ const randomColor = () => {
 // Função para checar o resultado //
 
 const checkSequence = () => {
+
   const hasWrongNumber = playerOrder.filter((current, index) => {
     return current !== randomOrder[index];
   }).length;
@@ -103,27 +105,27 @@ const initialSequence = () => {
 
       if(valor === 0){
 
-        greenBtn.className = 'shine-green'
+        displayAdd.className = 'display-green'
   
-        setTimeout(() => greenBtn.className ='button-green', 1000);
+        setTimeout(() => displayAdd.className ='display', 1000);
 
       } else if(valor === 1){
 
-        redBtn.className = 'shine-red'
+        displayAdd.className = 'display-red'
   
-        setTimeout(() => redBtn.className ='button-red', 1000);
+        setTimeout(() => displayAdd.className ='display', 1000);
 
       } else if(valor === 2){
 
-        yellowBtn.className = 'shine-yellow'
+        displayAdd.className = 'display-yellow'
   
-        setTimeout(() => yellowBtn.className ='button-yellow', 1000);
+        setTimeout(() => displayAdd.className ='display', 1000);
 
       } else {
 
-        blueBtn.className = 'shine-blue'
+        displayAdd.className = 'display-blue'
   
-        setTimeout(() => blueBtn.className ='button-blue', 1000);
+        setTimeout(() => displayAdd.className ='display', 1000);
       }
     }, index * 1500)
   })
