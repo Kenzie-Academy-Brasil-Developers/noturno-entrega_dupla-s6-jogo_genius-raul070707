@@ -1,7 +1,7 @@
 let randomOrder = [];
 let playerOrder = [];
 let lastPlayerOrder = [];
-let score = 1;
+let score = 0;
 
 // Mapeando botões //
 
@@ -25,8 +25,7 @@ blueBtn.onclick = () => click(3);
 // Função atualizar score //
 
 const updScore = () => {
-  check.innerHTML = `Lvl: ${score}`;
-  addDiv.innerHTML = `Ordem do player:${lastPlayerOrder}, Ordem aleatória: ${randomOrder}`;
+  check.innerHTML = `Lvl: ${score + 1}`;
 };
 updScore();
 
@@ -35,19 +34,16 @@ updScore();
 const startClick = () => {
   randomOrder = [];
   playerOrder = [];
-  score = 1;
-  startBtn.innerHTML = "Jogando";
+  score = 0;
   randomColor();
   updScore();
-  initialSequence();
-  startBtn.disabled = true;
+  initialSequence()
 };
 
 // Função de click //
 
 const click = (color) => {
   playerOrder[playerOrder.length] = color;
-  console.log(`Player order é ${playerOrder}`);
   checkSequence();
   activeButton(color);
 };
@@ -58,7 +54,6 @@ const randomColor = () => {
   lastPlayerOrder = playerOrder;
   playerOrder = [];
   randomOrder[randomOrder.length] = Math.floor(Math.random() * 4);
-  console.log(`Random order é ${randomOrder}`);
 };
 
 // Função para checar o resultado //
@@ -81,6 +76,14 @@ const checkSequence = () => {
 // Função sequência correta //
 
 const lvlUp = () => {
+  displayAdd.innerHTML = "";
+
+  const lvlUpMensage = document.createElement('h3');
+
+  lvlUpMensage.innerHTML = 'Parabens! Você passou de nível.';
+
+  displayAdd.appendChild(lvlUpMensage)
+
   randomColor();
   score++;
   updScore();
@@ -90,16 +93,32 @@ const lvlUp = () => {
 // Função sequência incorreta //
 
 const gameOver = () => {
-  scoreDisplay.innerHTML = `Você perdeu! Sua pontuação foi ${score}`;
-  startBtn.innerHTML = "Reiniciar";
+  displayAdd.innerHTML = "";
 
-  startBtn.disabled = false;
+  const restartButton = document.createElement('button');
+  const restartMensage = document.createElement('h3');
+
+  restartMensage.innerHTML = `Você perdeu! Sua pontuação foi ${score} rodadas.`;
+  restartButton.innerHTML = "Reiniciar";
+
+  displayAdd.appendChild(restartButton);
+  displayAdd.appendChild(restartMensage);
+
+  restartButton.addEventListener('click', () => startClick())
 };
 
 // Função para fazer brilhar os botoes na sequência //
 
 const initialSequence = () => {
-  randomOrder.forEach((valor, index) => {
+  displayAdd.innerHTML = "";
+
+  const playedMensage = document.createElement('h3');
+
+  playedMensage.innerHTML = "Acerte a sequência de cores!"
+
+  displayAdd.appendChild(playedMensage)
+
+  setTimeout(() => {randomOrder.forEach((valor, index) => {
     
     setTimeout(() =>{
 
@@ -129,6 +148,7 @@ const initialSequence = () => {
       }
     }, index * 1500)
   })
+}, 2000)
 }
 
 // Função para fazer brilhar os botoes //
