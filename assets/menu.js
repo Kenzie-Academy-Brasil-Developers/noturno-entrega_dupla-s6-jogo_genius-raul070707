@@ -4,12 +4,12 @@ let menuOpen = false;
 menu.addEventListener('click', () => {
     if(!menuOpen){
         menu.classList.add('open');
-        scoreList.classList.add('listScore');
+        scoreList.className = 'listScore';
         menuOpen = true;
         addHistoryToMenu();
     } else {
         menu.classList.remove('open');
-        scoreList.classList.remove('listScore');
+        scoreList.className = "scored-list";
         menuOpen = false;
         scoreHistory = [];
     }
