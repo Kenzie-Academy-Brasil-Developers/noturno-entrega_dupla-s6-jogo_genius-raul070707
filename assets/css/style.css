@@ -11,10 +11,21 @@ header {
     align-items: center;
     background-color: #1C1C1C;
     border: 3px solid #fff;
+    animation: neon 3s alternate infinite ease-in-out;
 }
 
 h1 {
     text-align: center;
+    animation: neon 3s alternate infinite ease-in-out;
+}
+
+@keyframes neon {
+    from {
+        filter: drop-shadow(0 0 0 #fff);
+    }
+    to {
+        filter: drop-shadow(0 0 30px #fff);
+    }
 }
 
 /* estilização da verificação de resultado */
@@ -23,6 +34,7 @@ h1 {
     width: 80px;
     border-left: 3px solid #fff;
     height: 8vh;
+    animation: neon 3s alternate infinite ease-in-out;
 }
 
 /* estilização do menu hamburguer */
@@ -35,7 +47,8 @@ h1 {
     height: 8vh;
     border-right: 3px solid #fff;
     cursor: pointer;
-    transition: all .5 ease-in-out;
+    transition: all .5s ease-in-out;
+    animation: neon 3s alternate infinite #fff;
 }
 
 .line {
@@ -81,9 +94,25 @@ h1 {
     transform: rotate(-45deg) translate(35px, 35px);
 }
 
+.scored-list {
+    width: 60%;
+    height: 91vh;
+    position: absolute;
+    top: 8vh;
+    left: -60vw;
+    background-color: #fff;
+    color: #1C1C1C;
+    transition: all .5s ease-in-out;
+    border-radius: 0 40px 40px 0;
+    padding: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
 .listScore {
-    width: 70%;
-    height: 92vh;
+    width: 60%;
+    height: 91vh;
     position: absolute;
     top: 8vh;
     left: 0;
@@ -91,6 +120,15 @@ h1 {
     color: #1C1C1C;
     transition: all .5s ease-in-out;
     border-radius: 0 40px 40px 0;
+    padding: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+
+.listScore li {
+    font-size: 12px;
+    margin-bottom: 5px;
 }
 
 .check {
@@ -100,7 +138,7 @@ h1 {
     font-size: 22px;
 }
 
-/* Estilização da secão de mensagens e botoes */
+/* Estilização da secão de mensagens */
 
 .container {
     display: flex;
@@ -166,17 +204,20 @@ h1 {
     font-size: 18px;
 }
 
-.start {
+.display button {
     width: 200px;
     height: 50px;
-    font-size: 16px;
+    font-size: 24px;
     border: 1px solid black;
+    margin-bottom: 20px;
     cursor: pointer;
 }
 
 .start:disabled, .button-green:disabled, .button-yellow:disabled, .button-red:disabled, .button-blue:disabled {
     cursor: default;
 }
+
+/* Estilização dos botões */
 
 .buttons {
     background-color: #1C1C1C;
@@ -197,6 +238,7 @@ h1 {
     min-width: 120px;
     height: 45%;
     margin: 2%;
+    border-radius: 20px;
 }
 
 .button-red {
@@ -205,6 +247,7 @@ h1 {
     min-width: 120px;
     height: 45%;
     margin: 2%;
+    border-radius: 20px;
 }
 
 .button-blue {
@@ -213,6 +256,7 @@ h1 {
     min-width: 120px;
     height: 45%;
     margin: 2%;
+    border-radius: 20px;
 }
 
 .button-yellow {
@@ -221,6 +265,7 @@ h1 {
     min-width: 120px;
     height: 45%;
     margin: 2%;
+    border-radius: 20px;
 }
 
 .shine-green {
@@ -229,6 +274,7 @@ h1 {
     min-width: 120px;
     height: 45%;
     margin: 2%;
+    border-radius: 20px;
 }
 
 .shine-red {
@@ -237,6 +283,7 @@ h1 {
     min-width: 120px;
     height: 45%;
     margin: 2%;
+    border-radius: 20px;
 }
 
 .shine-yellow {
@@ -245,6 +292,7 @@ h1 {
     min-width: 120px;
     height: 45%;
     margin: 2%;
+    border-radius: 20px;
 }
 
 .shine-blue {
@@ -253,6 +301,7 @@ h1 {
     min-width: 120px;
     height: 45%;
     margin: 2%;
+    border-radius: 20px;
 }
 
 @media (min-width: 580px){
@@ -331,4 +380,22 @@ h1 {
         margin: 10px 15px;
         cursor: pointer; 
     }
+
+    /* Estilização das mensagens */
+
+    .display, .display-green, .display-red, .display-blue, .display-yellow {
+        font-size: 32px;
+    }
+
+    .display button {
+        font-size: 42px;
+        height: 100px;
+        width: 300px;
+    }
+
+    .listScore, .scored-list, .listScore li, .scored-list li{
+        font-size: 36px;
+        padding: 30px;
+    }
+
 }

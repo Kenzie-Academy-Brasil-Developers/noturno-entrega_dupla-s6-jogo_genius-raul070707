@@ -51,8 +51,6 @@ const startClick = () => {
   redBtn.disabled = false;
   yellowBtn.disabled = false;
   blueBtn.disabled = false;
-  startBtn.disabled = true;
-
 };
 
 // Função de click //
@@ -112,7 +110,7 @@ const gameOver = () => {
   const restartButton = document.createElement('button');
   const restartMensage = document.createElement('h3');
 
-  restartMensage.innerHTML = `Você perdeu! Sua pontuação foi ${score} rodadas.`;
+  restartMensage.innerHTML = `Você perdeu! Sua pontuação foi de ${score} rodadas.`;
   restartButton.innerHTML = "Reiniciar";
 
   displayAdd.appendChild(restartButton);
@@ -125,8 +123,11 @@ const gameOver = () => {
   redBtn.disabled = true;
   yellowBtn.disabled = true;
   blueBtn.disabled = true;
-  startBtn.disabled = false;
 
+  audio = new Audio(
+    "https://assets.mixkit.co/sfx/preview/mixkit-little-piano-game-over-1944.mp3"
+  );
+  audio.play();
 };
 
 // Função para fazer brilhar os botoes na sequência //
@@ -163,7 +164,7 @@ const initialSequence = () => {
       }
     }, index * 1500)
   })
-}, 2000)
+}, 2000);
 }
 
 
