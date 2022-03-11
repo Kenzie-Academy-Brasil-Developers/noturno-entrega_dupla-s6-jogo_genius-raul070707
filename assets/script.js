@@ -3,6 +3,7 @@ let playerOrder = [];
 let lastPlayerOrder = [];
 let score = 0;
 let scoreHistory = [];
+let audio;
 
 
 // Mapeando botões //
@@ -127,6 +128,11 @@ const gameOver = () => {
   blueBtn.disabled = true;
   startBtn.disabled = false;
 
+  audio = new Audio(
+    "https://assets.mixkit.co/sfx/preview/mixkit-little-piano-game-over-1944.mp3"
+  );
+  audio.play();
+
 };
 
 // Função para fazer brilhar os botoes na sequência //
@@ -146,19 +152,31 @@ const initialSequence = () => {
     setTimeout(() =>{
       if(valor === 0){
         displayAdd.className = 'display-green'
-  
+         audio = new Audio(
+          "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_G_Piano_SP_222_02.mp3?cb=eab168e9-f94e-466f-ab2f-f9a2dfa7659d"
+        );
+        audio.play();
         setTimeout(() => (displayAdd.className = "display"), 1000);
       } else if (valor === 1) {
         displayAdd.className = "display-red";
-
+        audio = new Audio(
+          "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_A_Piano_SP_222_08.mp3?cb=f6a44aab-9145-40d7-aec0-bf69a0d9d0ed"
+        );
+        audio.play();
         setTimeout(() => (displayAdd.className = "display"), 1000);
       } else if (valor === 2) {
         displayAdd.className = "display-yellow";
-
+        audio = new Audio(
+          "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_A_Piano_SP_222_03.mp3?cb=65c2ed1d-8b14-4d4d-95fd-fa0bb03843b1"
+        );
+        audio.play();
         setTimeout(() => (displayAdd.className = "display"), 1000);
       } else {
         displayAdd.className = "display-blue";
-
+        audio = new Audio(
+          "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_A_Piano_SP_222_02.mp3?cb=d51ce799-90a7-40f6-aedf-a5ad635c3f8c"
+        );
+        audio.play();
         setTimeout(() => (displayAdd.className = "display"), 1000);
       }
     }, index * 1500)
@@ -167,24 +185,36 @@ const initialSequence = () => {
 }
 
 
-// Função para fazer brilhar os botoes //
+// Função para fazer brilhar os botoes + som//
 
 const activeButton = (index) => {
   if (index === 0) {
     greenBtn.className = "shine-green";
-
+    audio = new Audio(
+      "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_G_Piano_SP_222_02.mp3?cb=eab168e9-f94e-466f-ab2f-f9a2dfa7659d"
+    );
+    audio.play();
     setTimeout(() => (greenBtn.className = "button-green"), 1000);
   } else if (index === 1) {
     redBtn.className = "shine-red";
-
+    audio = new Audio(
+      "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_A_Piano_SP_222_08.mp3?cb=f6a44aab-9145-40d7-aec0-bf69a0d9d0ed"
+    );
+    audio.play();
     setTimeout(() => (redBtn.className = "button-red"), 1000);
   } else if (index === 2) {
     yellowBtn.className = "shine-yellow";
-
+    audio = new Audio(
+      "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_A_Piano_SP_222_03.mp3?cb=65c2ed1d-8b14-4d4d-95fd-fa0bb03843b1"
+    );
+    audio.play();
     setTimeout(() => (yellowBtn.className = "button-yellow"), 1000);
   } else {
     blueBtn.className = "shine-blue";
-
+    audio = new Audio(
+      "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_A_Piano_SP_222_02.mp3?cb=d51ce799-90a7-40f6-aedf-a5ad635c3f8c"
+    );
+    audio.play();
     setTimeout(() => (blueBtn.className = "button-blue"), 1000);
   }
 };
@@ -192,10 +222,10 @@ const activeButton = (index) => {
 // Adicionar histórico ao menu //
 
 function addHistoryToMenu() {
-  const sortedHistory = scoreHistory.sort((a, b) => a - b)
+  const sortedHistory = scoreHistory.sort((a, b) => a - b);
   sortedHistory.forEach((scoreValue) => {
     const addLi = document.createElement("li");
-    addLi.textContent =  `Pontuação ${scoreValue}`;
+    addLi.textContent = `Pontuação ${scoreValue}`;
     ulHistory.appendChild(addLi);
   });
 }
