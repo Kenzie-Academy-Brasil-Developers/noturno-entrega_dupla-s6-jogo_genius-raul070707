@@ -1,8 +1,8 @@
+let scoreHistory = JSON.parse(localStorage.getItem("historyList"));
 let randomOrder = [];
 let playerOrder = [];
 let lastPlayerOrder = [];
 let score = 0;
-let scoreHistory = JSON.parse(localStorage.getItem("historyList"));
 let audio;
 
 // Mapeando botões //
@@ -120,6 +120,8 @@ const gameOver = () => {
   restartButton.addEventListener("click", () => startClick());
 
   scoreHistory[scoreHistory.length] = score;
+  let historyJSON = JSON.stringify(scoreHistory);
+  localStorage.setItem("historyList", historyJSON);
   greenBtn.disabled = true;
   redBtn.disabled = true;
   yellowBtn.disabled = true;
@@ -129,8 +131,6 @@ const gameOver = () => {
     "https://assets.mixkit.co/sfx/preview/mixkit-little-piano-game-over-1944.mp3"
   );
   audio.play();
-  let historyJSON = JSON.stringify(scoreHistory);
-  localStorage.setItem("historyList", historyJSON);
 };
 
 // Função para fazer brilhar os botoes na sequência - com audio //
@@ -144,6 +144,7 @@ const initialSequence = () => {
 
   displayAdd.appendChild(playedMensage);
 
+  disableBtns();
   setTimeout(() => {
     randomOrder.forEach((valor, index) => {
       setTimeout(() => {
@@ -177,6 +178,7 @@ const initialSequence = () => {
           setTimeout(() => (displayAdd.className = "display"), 1000);
         }
       }, index * 1500);
+      enableBtns();
     });
   }, 2000);
 };
@@ -225,3 +227,19 @@ function addHistoryToMenu() {
     ulHistory.appendChild(addLi);
   });
 }
+
+const enableBtns = () => {
+  setTimeout (() => {
+  greenBtn.disabled = false;
+  redBtn.disabled = false;
+  yellowBtn.disabled = false;
+  blueBtn.disabled = false;
+  }, randomOrder.length * 1500);
+};
+
+const disableBtns = () => {
+  greenBtn.disabled = true;
+  redBtn.disabled = true;
+  yellowBtn.disabled = true;
+  blueBtn.disabled = true;
+};
