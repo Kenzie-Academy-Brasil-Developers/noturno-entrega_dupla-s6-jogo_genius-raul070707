@@ -5,6 +5,7 @@ let score = 0;
 let scoreHistory = [];
 let audio;
 
+
 // Mapeando botões //
 
 const startBtn = document.querySelector(".start");
@@ -35,7 +36,6 @@ blueBtn.onclick = () => click(3);
 
 const updScore = () => {
   check.innerHTML = `Lvl: ${score + 1}`;
-  addDiv.innerHTML = `Ordem do player:${lastPlayerOrder}, Ordem aleatória: ${randomOrder}`;
 };
 updScore();
 
@@ -44,8 +44,7 @@ updScore();
 const startClick = () => {
   randomOrder = [];
   playerOrder = [];
-  score = 0;
-  startBtn.innerHTML = "Jogando";
+  score = 0;  
   randomColor();
   updScore();
   initialSequence();
@@ -54,13 +53,13 @@ const startClick = () => {
   yellowBtn.disabled = false;
   blueBtn.disabled = false;
   startBtn.disabled = true;
+
 };
 
 // Função de click //
 
 const click = (color) => {
   playerOrder[playerOrder.length] = color;
-  console.log(`Player order é ${playerOrder}`);
   checkSequence();
   activeButton(color);
 };
@@ -71,7 +70,6 @@ const randomColor = () => {
   lastPlayerOrder = playerOrder;
   playerOrder = [];
   randomOrder[randomOrder.length] = Math.floor(Math.random() * 4);
-  console.log(`Random order é ${randomOrder}`);
 };
 
 // Função para checar o resultado //
@@ -93,6 +91,14 @@ const checkSequence = () => {
 // Função sequência correta //
 
 const lvlUp = () => {
+  displayAdd.innerHTML = "";
+
+  const lvlUpMensage = document.createElement('h3');
+
+  lvlUpMensage.innerHTML = 'Parabens! Você passou de nível.';
+
+  displayAdd.appendChild(lvlUpMensage)
+
   randomColor();
   score++;
   updScore();
@@ -102,32 +108,54 @@ const lvlUp = () => {
 // Função sequência incorreta //
 
 const gameOver = () => {
-  scoreDisplay.innerHTML = `Você perdeu! Sua pontuação foi ${score}`;
-  startBtn.innerHTML = "Reiniciar";
+  displayAdd.innerHTML = "";
+
+  const restartButton = document.createElement('button');
+  const restartMensage = document.createElement('h3');
+
+  restartMensage.innerHTML = `Você perdeu! Sua pontuação foi ${score} rodadas.`;
+  restartButton.innerHTML = "Reiniciar";
+
+  displayAdd.appendChild(restartButton);
+  displayAdd.appendChild(restartMensage);
+
+  restartButton.addEventListener('click', () => startClick())
+
   scoreHistory.push(score);
   greenBtn.disabled = true;
   redBtn.disabled = true;
   yellowBtn.disabled = true;
   blueBtn.disabled = true;
   startBtn.disabled = false;
+
   audio = new Audio(
     "https://assets.mixkit.co/sfx/preview/mixkit-little-piano-game-over-1944.mp3"
   );
   audio.play();
+
 };
 
 // Função para fazer brilhar os botoes na sequência //
 
 const initialSequence = () => {
-  randomOrder.forEach((valor, index) => {
-    setTimeout(() => {
-      if (valor === 0) {
-        displayAdd.className = "display-green";
-        audio = new Audio(
+
+  displayAdd.innerHTML = "";
+
+  const playedMensage = document.createElement('h3');
+
+  playedMensage.innerHTML = "Acerte a sequência de cores!"
+
+  displayAdd.appendChild(playedMensage)
+
+  setTimeout(() => {randomOrder.forEach((valor, index) => {
+    
+    setTimeout(() =>{
+      if(valor === 0){
+        displayAdd.className = 'display-green'
+         audio = new Audio(
           "https://d7d3471nr939s.cloudfront.net/RootsRevival_Noiz_SP/MP3/One+Shots/34_G_Piano_SP_222_02.mp3?cb=eab168e9-f94e-466f-ab2f-f9a2dfa7659d"
         );
         audio.play();
-
         setTimeout(() => (displayAdd.className = "display"), 1000);
       } else if (valor === 1) {
         displayAdd.className = "display-red";
@@ -151,9 +179,11 @@ const initialSequence = () => {
         audio.play();
         setTimeout(() => (displayAdd.className = "display"), 1000);
       }
-    }, index * 1500);
-  });
-};
+    }, index * 1500)
+  })
+}, 2000)
+}
+
 
 // Função para fazer brilhar os botoes + som//
 
