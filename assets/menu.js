@@ -11,6 +11,5 @@ menu.addEventListener('click', () => {
         menu.classList.remove('open');
         scoreList.className = "scored-list";
         menuOpen = false;
-        scoreHistory = [];
     }
 })
