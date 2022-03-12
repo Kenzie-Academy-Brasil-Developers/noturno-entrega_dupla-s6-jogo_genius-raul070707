@@ -48,10 +48,7 @@ const startClick = () => {
   randomColor();
   updScore();
   initialSequence();
-  greenBtn.disabled = false;
-  redBtn.disabled = false;
-  yellowBtn.disabled = false;
-  blueBtn.disabled = false;
+  enableBtns();
 };
 
 // Função de click //
@@ -122,10 +119,7 @@ const gameOver = () => {
   scoreHistory[scoreHistory.length] = score;
   let historyJSON = JSON.stringify(scoreHistory);
   localStorage.setItem("historyList", historyJSON);
-  greenBtn.disabled = true;
-  redBtn.disabled = true;
-  yellowBtn.disabled = true;
-  blueBtn.disabled = true;
+  disableBtns();
 
   audio = new Audio(
     "https://assets.mixkit.co/sfx/preview/mixkit-little-piano-game-over-1944.mp3"
@@ -229,11 +223,11 @@ function addHistoryToMenu() {
 }
 
 const enableBtns = () => {
-  setTimeout (() => {
-  greenBtn.disabled = false;
-  redBtn.disabled = false;
-  yellowBtn.disabled = false;
-  blueBtn.disabled = false;
+  setTimeout(() => {
+    greenBtn.disabled = false;
+    redBtn.disabled = false;
+    yellowBtn.disabled = false;
+    blueBtn.disabled = false;
   }, randomOrder.length * 1500);
 };
 
