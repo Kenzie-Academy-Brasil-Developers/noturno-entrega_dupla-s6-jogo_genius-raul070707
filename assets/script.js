@@ -1,4 +1,5 @@
-let scoreHistory = JSON.parse(localStorage.getItem("historyList"));
+let scoreHistory = JSON.parse(localStorage.getItem("historyList")) || [];
+let sortedHistory;
 let randomOrder = [];
 let playerOrder = [];
 let lastPlayerOrder = [];
@@ -48,7 +49,7 @@ const startClick = () => {
   randomColor();
   updScore();
   initialSequence();
-  enableBtns();
+  disableBtns();
 };
 
 // Função de click //
@@ -119,7 +120,7 @@ const gameOver = () => {
   scoreHistory[scoreHistory.length] = score;
   let historyJSON = JSON.stringify(scoreHistory);
   localStorage.setItem("historyList", historyJSON);
-  disableBtns();
+  enableBtns();
 
   audio = new Audio(
     "https://assets.mixkit.co/sfx/preview/mixkit-little-piano-game-over-1944.mp3"
@@ -214,7 +215,7 @@ const activeButton = (index) => {
 // Adicionar histórico ao menu //
 
 function addHistoryToMenu() {
-  const sortedHistory = scoreHistory.sort((a, b) => b - a);
+  sortedHistory = scoreHistory.sort((a, b) => b - a);
   sortedHistory.forEach((scoreValue) => {
     const addLi = document.createElement("li");
     addLi.textContent = `Pontuação ${scoreValue}`;
@@ -237,3 +238,5 @@ const disableBtns = () => {
   yellowBtn.disabled = true;
   blueBtn.disabled = true;
 };
+
+disableBtns();
